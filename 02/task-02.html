@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Task-02</title>
+    <style>
+        #text {
+            position: absolute;
+            top: 360px;
+            left: 290px;
+            color: #333;
+            
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+    <script src='./vintage.js'></script>
+   
+</head>
+<body>
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <p id="text"></p>
+    <script>
+       var myChart = echarts.init(document.getElementById('main'), 'vintage');
+       var text = document.querySelector("#text");     
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '前端框架市场占比'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{b}: {c}"
+            },
+            series: [{
+                name: '份额',
+                type: 'pie',
+                data:[
+                    {name: 'React', value: 40},
+                    {name: 'Vue', value: 40},
+                    {name: 'Angular', value: 10}
+                ]
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        myChart.on('click', function (params) {
+            // 控制台打印数据的名称
+            console.log(params);
+            text.innerHTML = params.name;
+
+        });
+    </script>
+</body>
+</html>
